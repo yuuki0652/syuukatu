@@ -22,6 +22,11 @@ public class Happymsg : MonoBehaviour
     private void Update()
     {
         TextConversion();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();//ÉQÅ[ÉÄèIóπ
+        }
     }
 
     private void TextConversion()
