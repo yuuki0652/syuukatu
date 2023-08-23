@@ -199,13 +199,13 @@ public class Enemy : MonoBehaviour
 
         for (int i = 0; i < 200; i++)
         {
-            if (enemyLife.Max == 0) { break; }//死んだとき武器を降らせないため
             transform.LookAt(target);
             Vector3 weaponPos = new Vector3(UnityEngine.Random.Range(-5f, 5f), 30f, UnityEngine.Random.Range(-5f, 5f));
             GameObject weapon = Instantiate(weaponPrefab, target.position + weaponPos, Quaternion.Euler(180f, 0f, 0f));
             Rigidbody weaponRb = weapon.AddComponent<Rigidbody>();
             weaponRb.AddForce(Vector3.down * 1000f);
             Destroy(weapon, 1.5f);
+            if (enemyLife.Max <= 0) { break; }//死んだとき武器を降らせないため
             yield return new WaitForSeconds(0.1f);
         }
         anim.SetBool("rest", true);//Attack2Cooldownに書くとアニメーションをしてくれないためここに記述する 
