@@ -23,7 +23,7 @@ public class TitleSE : MonoBehaviour
     private void Update()
     {
         if (PlayerSEBolum != slider.value) { PlayerSEBolum = slider.value; }//スライダーを動かすとBolumも変わるようにした
-        Debug.Log(PlayerSEBolum);
+        Debug.Log("タイトル現在のプレイヤSEの音量は"+PlayerSEBolum);
     }
 
     public static float GetPlayerSEBolum()

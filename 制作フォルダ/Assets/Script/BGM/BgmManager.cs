@@ -23,7 +23,7 @@ public class BgmManager : MonoBehaviour
     private void Update()
     {
         if(Bolum != slider.value) { Bolum = slider.value; }//スライダーを動かすとBolumも変わるようにした
-        Debug.Log(Bolum);
+        Debug.Log("タイトル現在のBGMの音量は"+Bolum);
     }
 
     public static float GetBolum()

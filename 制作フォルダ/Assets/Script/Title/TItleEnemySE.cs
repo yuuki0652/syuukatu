@@ -20,7 +20,7 @@ public class TItleEnemySE : MonoBehaviour
     private void Update()
     {
         if (PlayerSEBolum != slider.value) { PlayerSEBolum = slider.value; }//スライダーを動かすとBolumも変わるようにした
-        Debug.Log(PlayerSEBolum);
+        Debug.Log("タイトル現在の敵の音量は"+PlayerSEBolum);
     }
 
     public static float GetEnemySEBolum()
