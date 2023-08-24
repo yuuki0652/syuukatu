@@ -14,7 +14,7 @@ public class EndingSUM : MonoBehaviour
         SUMText = GetComponent<TextMeshProUGUI>();
         scoreConboSUM = 0;//リセットする  
         scoreConboSUM = (Score.ScorecounterMaxCnt() + (ComboSystem.counterMaxCnt() * 250));
-        NextButton.active = false;
+        NextButton.SetActive(false);
 
         Cursor.visible = true;//カーソルを出す
         Cursor.lockState = CursorLockMode.Confined;// カーソルを画面内で動かせる

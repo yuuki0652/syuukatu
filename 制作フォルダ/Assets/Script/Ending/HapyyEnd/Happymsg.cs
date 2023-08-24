@@ -16,7 +16,7 @@ public class Happymsg : MonoBehaviour
     {
         // 初期状態ではテキストを非表示にする
         textComponent.enabled = false;
-        BuutonSUM.active = false;//最初はタイトルへのボタンは隠す
+        BuutonSUM.SetActive(false);//最初はタイトルへのボタンは隠す
         ShowText();
     }
     private void Update()

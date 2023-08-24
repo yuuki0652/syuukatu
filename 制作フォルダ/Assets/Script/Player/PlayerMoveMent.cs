@@ -61,6 +61,10 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
 
     static readonly int hashAttackType = Animator.StringToHash("AttackType");
 
+    public bool Playerevadeing = false;//回避を確認するブール
+
+    [SerializeField] private GameObject evadeGameObj;
+
     void Start()
     {
         cap = GetComponent<CapsuleCollider>();
@@ -73,6 +77,7 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
         anim = GetComponent<Animator>();
         gravity = Physics.gravity;//処理を軽くするためStartで重力を代入する
         cameraAngle = transform.rotation.eulerAngles;
+        evadeGameObj.SetActive(false);//最初は回避バリアは見えない
     }
 
     public void Playermove()
@@ -166,18 +171,29 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
             if (evadeClicked)//回避ボタン
             {
                 rb.velocity = Vector3.zero;//回避中移動を受け付けない
+                Playerevadeing = true;//回避中を確認（回避中に攻撃を受けないようにするためのブール文）
                 cap.height = 0; // カプセルコライダーの変形処理を行う(消すと地面から落ちるため変形させている)
                 rb.AddForce(transform.forward * 11f, ForceMode.VelocityChange);
                 anim.SetTrigger("Loling");//回避モーション
                 evadeTime -= Time.deltaTime;//回避する時間を減らす
                 if (evadeTime <= 0f)
                 {
+                    Playerevadeing = false;//回避中終わり（回避中に攻撃を受けないようにするためのブール文）
                     PlayerSt.GetComponent<AvoidanceSC>().MaxAvoidance -= evadeUse;//回避するとゲージを減らす
                     evadeClicked = false;
                     evadeTime = evadenumber;//回避の時間を変更する
                     cap.height = 1.871724f;// カプセルコライダーの変形を元に戻す処理を行う(キャラクタによって数は変わる)
                 }
             }
+        }
+
+        if(Playerevadeing == true)//回避中に回避の見た目にする
+        {
+            evadeGameObj.SetActive(true);//回避のバリアオブジェクトを出す
+        }
+        else
+        {
+            evadeGameObj.SetActive(false);//回避のバリアオブジェクトを消す
         }
     }
 

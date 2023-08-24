@@ -20,6 +20,8 @@ public class PlayerStatus : MonoBehaviour,PlayerHitIDamegeble
     private Renderer playerRenderer; // プレイヤのレンダラー
     private Color originalColor; // オリジナルの色
     private Coroutine blinkCoroutine; // 点滅用のコルーチン
+
+    [SerializeField] private PlayerMoveMent playerMovement;
     void Start()
     {
         PlayerStateSO SO = playerDataBase.playersatasList[0];
@@ -57,28 +59,34 @@ public class PlayerStatus : MonoBehaviour,PlayerHitIDamegeble
         PlayerMoveMent movement = gameObject.GetComponent<PlayerMoveMent>();
         if (other.gameObject.tag == "EnemyWapon1" && damageTimer1 <= 0f)//敵の攻撃一つ目(後々攻撃を増やしていく)
         {
-            // プレイヤ滅コルーチンを開始
-            if (blinkCoroutine == null)
+            if (playerMovement.Playerevadeing == false)//回避中はダメージ無効
             {
-                blinkCoroutine = StartCoroutine(BlinkEnemy());
+                // プレイヤ滅コルーチンを開始
+                if (blinkCoroutine == null)
+                {
+                    blinkCoroutine = StartCoroutine(BlinkEnemy());
+                }
+                playerdamegeble.EnemyAttackDamage(Dmg);//HPを減らす式
+                Debug.Log("斧がプレイヤにHPを与えた");
+                damageTimer1 = DmgCoolTime1;//ダメージタイマーにダメージクールタイムn秒が代入される
+                movement.isKnockBack = true;//PlayerMoventに入っているノックバックをtrue
             }
-            playerdamegeble.EnemyAttackDamage(Dmg);//HPを減らす式
-            Debug.Log("斧がプレイヤにHPを与えた");
-            damageTimer1 = DmgCoolTime1;//ダメージタイマーにダメージクールタイムn秒が代入される
-            movement.isKnockBack = true;//PlayerMoventに入っているノックバックをtrue
         }
         //-----------------------------------------------------------------------------
         if (other.gameObject.tag == "EnemyWapon2" && damageTimer1 <= 0f)//敵の攻撃2つ目(後々攻撃を増やしていく)
         {
-            // プレイヤ滅コルーチンを開始
-            if (blinkCoroutine == null)
+            if (playerMovement.Playerevadeing == false)//回避中はダメージ無効
             {
-                blinkCoroutine = StartCoroutine(BlinkEnemy());
-            }
+                // プレイヤ滅コルーチンを開始
+                if (blinkCoroutine == null)
+                {
+                    blinkCoroutine = StartCoroutine(BlinkEnemy());
+                }
                 playerdamegeble.EnemyAttackDamage(Dmg2);//HPを減らす式(インターフェースで実装)
-            Debug.Log("雨がプレイヤにHPを与えた");
-            damageTimer1 = DmgCoolTime1;//ダメージタイマーにダメージクールタイムn秒が代入される
-             movement.isKnockBack = true;//PlayerMoventに入っているノックバックをtrue
+                Debug.Log("雨がプレイヤにHPを与えた");
+                damageTimer1 = DmgCoolTime1;//ダメージタイマーにダメージクールタイムn秒が代入される
+                movement.isKnockBack = true;//PlayerMoventに入っているノックバックをtrue
+            }
         }
     }
     IEnumerator BlinkEnemy()

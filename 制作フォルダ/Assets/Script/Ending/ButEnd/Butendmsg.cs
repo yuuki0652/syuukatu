@@ -23,7 +23,7 @@ public class Butendmsg : MonoBehaviour
     {
         // 初期状態ではテキストを非表示にする
         textComponent.enabled = false;
-        BuutonSUM.active = false;//最初はタイトルへのボタンは隠す
+        BuutonSUM.SetActive(false);//最初はタイトルへのボタンは隠す
         ShowText();
         aud2 = GetComponent<AudioSource>();
     }
@@ -110,7 +110,7 @@ public class Butendmsg : MonoBehaviour
     private void HideText()
     {
         msg = " ";
-        BuutonSUM.active = true;
+        BuutonSUM.SetActive(true);
         Destroy(image);//全てが終わったら破棄する
     }
 }
