@@ -17,7 +17,7 @@ public class BgmManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        slider.value = Bolum; // スライダーの初期値を0.3に設定
+        slider.value = Bolum; //タイトルで決めた音量に設定する
         slider.onValueChanged.AddListener(value => this.audioSource.volume = value);
     }
     private void Update()

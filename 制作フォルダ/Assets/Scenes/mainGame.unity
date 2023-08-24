@@ -12216,6 +12216,7 @@ GameObject:
   - component: {fileID: 393909384}
   - component: {fileID: 393909383}
   - component: {fileID: 393909382}
+  - component: {fileID: 393909385}
   m_Layer: 0
   m_Name: TutorialManeger
   m_TagString: Untagged
@@ -12352,6 +12353,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &393909385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393909381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284c1af2de65134489c0b783e26d8379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 454724967}
 --- !u!1001 &395140246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20908,6 +20922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 632446349}
   - component: {fileID: 632446350}
+  - component: {fileID: 632446351}
   m_Layer: 0
   m_Name: TutorialBGM
   m_TagString: Untagged
@@ -21026,6 +21041,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &632446351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632446348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ae781a64070b14d98925f96372a803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1887842941721804640}
 --- !u!1001 &633779073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21475,7 +21503,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.295
+  m_Volume: 0.46
   m_Pitch: 1
   Loop: 0
   Mute: 0

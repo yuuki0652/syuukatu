@@ -7,18 +7,22 @@ public class MainGameBgmManager : MonoBehaviour
 {
     public Slider slider;
     AudioSource audioSource;
-    private  float Bolum;
+    public static float BGMBolum;
 
     private void Awake()
     {
-        Bolum = BgmManager.GetBolum();
+        BGMBolum = BgmManager.GetBolum();
     }
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        slider.value = Bolum;
+        slider.value = BGMBolum;
         audioSource.volume = slider.value;
         slider.onValueChanged.AddListener(value => this.audioSource.volume = value);
-        Debug.Log(Bolum);
+        Debug.Log(BGMBolum);
+    }
+    public static float GetMainGameBGMBolum()
+    {
+        return BGMBolum;//‰‚ß‚Éİ’è‚µ‚½‰¹—Ê‚ğƒƒCƒ“ƒQ[ƒ€‚É—A‘—‚·‚é
     }
 }
