@@ -82,6 +82,7 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
 
     public void Playermove()
     {
+        //移動方法キーボードによる移動を可能にしている場合によってはコントローラーにも変更可
         if (anim.GetBool("Attack") == true) return;
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -105,7 +106,7 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
         }
 
         rb.velocity = moveDir * move + new Vector3(0, rb.velocity.y, 0);//重力を加える
-
+        //プレイヤの回転率を計算
         if (move > 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);
@@ -130,6 +131,7 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
     }
     public void cameracon()
     {
+        //カメラの操作関連
         Vector2 delta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
         if (Input.GetMouseButton(1))
         {
@@ -154,13 +156,14 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
         {
             cameraOffset = hit.point - transform.position;
         }
-
+        //カメラと障害物の計算をしている
         camera.transform.position = transform.position + cameraOffset;
         camera.transform.rotation = Quaternion.LookRotation(transform.position + new Vector3(0, CameraHeightPos, 0) - camera.transform.position);
     }
 
     public void Evasivel()
     {
+        //回避のシステム
         if (evade >= evadeUse)//回避ゲージが30以上ないと回避できない
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -199,6 +202,7 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
 
     public void KnockBack()
     {
+        ///ノックバックの計算
         if (isKnockBack)//ノックバックしたとき
         {
             rb.velocity = Vector3.zero;//ノックバック中移動を受け付けない
@@ -219,6 +223,7 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
     }
     public void PlayerDie()
     {
+        //プレイヤの死んだときの関数
         anim.SetTrigger("Die");
         cap.height = 0.5f;//カプセルコライダーを無効にすると重力で落ちるためコライダの数字を変更する
         cap.center = new Vector3(0, 0, 0);
@@ -230,6 +235,7 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
     }
     bool EvasiveButtonClicked()
     {
+        //回避のボタンを押したときの関数
         evadeClicked = true;//回避イベント
         return evadeClicked;
     }
@@ -245,10 +251,12 @@ public class PlayerMoveMent : MonoBehaviour//プレイヤの行動処理すべて(バグなどが
     }
     private void animSpeed(float Speed)
     {
+        //アニメーション制御関数
         anim.SetFloat("Speed", Speed);
     }
     private void animAttack(int Type)
     {
+
         anim.SetTrigger("Attack");
         anim.SetInteger(hashAttackType, Type);
     }

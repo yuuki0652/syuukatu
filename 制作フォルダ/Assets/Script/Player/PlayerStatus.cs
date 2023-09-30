@@ -38,6 +38,7 @@ public class PlayerStatus : MonoBehaviour,PlayerHitIDamegeble
     }
     private void WaponTime1()
     {
+        //クールタイムの設定
         progeruBar.BarValue = Max;
         if (damageTimer1 > 0f)//Wapon1のクールタイム
         {
@@ -55,6 +56,7 @@ public class PlayerStatus : MonoBehaviour,PlayerHitIDamegeble
     }
     public void OnTriggerEnter(Collider other)
     {   //一つ目の武器
+        //敵の攻撃が当たったらプレイヤを赤くする
         PlayerHitIDamegeble playerdamegeble = gameObject.GetComponent<PlayerHitIDamegeble>();
         PlayerMoveMent movement = gameObject.GetComponent<PlayerMoveMent>();
         if (other.gameObject.tag == "EnemyWapon1" && damageTimer1 <= 0f)//敵の攻撃一つ目(後々攻撃を増やしていく)

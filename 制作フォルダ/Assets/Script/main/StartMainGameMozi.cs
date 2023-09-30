@@ -117,7 +117,7 @@ public class StartMainGameMozi : MonoBehaviour
     }
     private void firstmsg()
     {
-        msg = "【世界メッセージを受信しました】";
+        msg = "【メッセージを受信しました】";
         aud.PlayOneShot(ReceiveMessage);
         TextChange("msg1", Nunbers);
     }
@@ -225,7 +225,7 @@ public class StartMainGameMozi : MonoBehaviour
     }
     private void lastmsg()
     {
-        msg = "【世界メッセージ終了】";
+        msg = "【メッセージ終了】";
         aud.PlayOneShot(ReceiveMessage);
         TextChange("HideText", Nunbers);
         Debug.Log("最後の文字表示");
